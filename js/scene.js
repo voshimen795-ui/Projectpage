@@ -15,7 +15,7 @@ export function createStage(canvas) {
   const renderer = new THREE.WebGLRenderer({
     canvas,
     antialias: true,
-    alpha: false,
+    alpha: true, // transparent: the red studio glow is painted by CSS behind the canvas
     powerPreference: 'high-performance',
   });
   // Cap DPR at 2: crisp on retina without melting mobile GPUs.
@@ -29,9 +29,9 @@ export function createStage(canvas) {
 
   // --- Scene ---------------------------------------------------------------
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(SCENE.background);
+  renderer.setClearColor(0x000000, 0);
   // Fog melts the floor edge into the backdrop for an infinite-studio feel.
-  scene.fog = new THREE.Fog(SCENE.background, 9, 20);
+  scene.fog = new THREE.Fog(SCENE.fog, 9, 20);
 
   // --- Camera --------------------------------------------------------------
   const camera = new THREE.PerspectiveCamera(SCENE.fov, window.innerWidth / window.innerHeight, 0.1, 100);
@@ -77,9 +77,12 @@ export function createStage(canvas) {
     // Keep the current shot consistent when crossing breakpoints / rotating devices.
     camera.position.sub(controls.target).multiplyScalar(stage.frameScale / prevScale).add(controls.target);
 
-    // Desktop: panel on the right → watch nudged left. Mobile: the hero (top)
-    // and tabbed sheet (bottom) are balanced, so no vertical shift is needed.
-    const offsetX = w >= 1024 ? Math.min(220, w * 0.12) : 0;
+    // Side drawer (desktop ≥ 1280px, or a phone in landscape) → watch nudged
+    // left. Portrait / tablet: hero on top and tabbed sheet below are balanced,
+    // so no shift is needed.
+    let offsetX = 0;
+    if (w >= 1280) offsetX = Math.min(220, w * 0.12);
+    else if (w > h && h <= 520) offsetX = 160;
     camera.setViewOffset(w, h, offsetX, 0, w, h);
     camera.updateProjectionMatrix();
   };
@@ -134,22 +137,22 @@ function setupLighting(scene) {
   key.shadow.normalBias = 0.02;
   scene.add(key);
 
-  // Rim lights — cool cyan from back-left, warm orange from back-right.
+  // Rim lights — cool steel-blue from back-left, racing red from back-right.
   // They carve the tonneau silhouette and drop coloured specular streaks on metal.
-  const rimCyan = new THREE.SpotLight(0x00e5ff, 60, 20, Math.PI / 6, 0.6, 1.6);
-  rimCyan.position.set(-5, 2.5, -4);
-  scene.add(rimCyan);
+  const rimCool = new THREE.SpotLight(0x9fc8ff, 40, 20, Math.PI / 6, 0.6, 1.6);
+  rimCool.position.set(-5, 2.5, -4);
+  scene.add(rimCool);
 
-  const rimOrange = new THREE.SpotLight(0xff7a1a, 60, 20, Math.PI / 6, 0.6, 1.6);
-  rimOrange.position.set(5, 1.5, -4);
-  scene.add(rimOrange);
+  const rimRed = new THREE.SpotLight(0xff2340, 75, 20, Math.PI / 6, 0.6, 1.6);
+  rimRed.position.set(5, 1.5, -4);
+  scene.add(rimRed);
 
   // Low frontal fill so the dial never falls into pure black.
   const fill = new THREE.DirectionalLight(0xdfe7ff, 0.45);
   fill.position.set(-2, -1, 6);
   scene.add(fill);
 
-  return { ambient, key, rimCyan, rimOrange, fill };
+  return { ambient, key, rimCool, rimRed, fill };
 }
 
 /** Shadow-catcher floor + radial glow pool ("ambient floor reflection"). */

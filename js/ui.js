@@ -75,12 +75,12 @@ export function createCameraDirector(stage) {
   const tmp = new THREE.Vector3();
   let flight = null;
 
-  function flyTo({ position, target }, { duration = 1.8 } = {}) {
+  function flyTo({ position, target }, { duration = 1.8, zoom = 1 } = {}) {
     controls.pauseAutoRotate();
     controls.enabled = false;
 
     const endTarget = new THREE.Vector3(...target);
-    const endPos = new THREE.Vector3(...position).multiplyScalar(stage.frameScale);
+    const endPos = new THREE.Vector3(...position).multiplyScalar(stage.frameScale * zoom);
 
     from.setFromVector3(tmp.copy(camera.position).sub(controls.target));
     to.setFromVector3(tmp.copy(endPos).sub(endTarget));
@@ -215,7 +215,8 @@ function initExplode(director, exploder) {
     setToggle(on);
     exploder.to(on ? 1 : 0, { onUpdate: syncSlider });
     // Glide to a three-quarter angle so the layers read clearly.
-    director.flyTo(on ? EXPLODE.cameraView : VIEWS.front, { duration: 1.6 });
+    const portrait = window.innerWidth < window.innerHeight;
+    director.flyTo(on ? EXPLODE.cameraView : VIEWS.front, { duration: 1.6, zoom: on && portrait ? 1.3 : 1 });
     $$('[data-view]').forEach((b) => {
       const active = !on && b.dataset.view === 'front';
       b.classList.toggle('is-active', active);

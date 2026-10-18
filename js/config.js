@@ -21,6 +21,7 @@ export const ASSETS = {
 
 export const SCENE = {
   background: 0x0a0a0c,
+  fog: 0x12060a, // red-black, matches the CSS studio glow at the horizon
   exposure: 1.2,
   fov: 36,
   // Width (scene units) that must stay visible; narrow screens pull the camera back.
@@ -35,7 +36,7 @@ export const SCENE = {
 export const CONTROLS = {
   dampingFactor: 0.05,
   minDistance: 1.8,
-  maxDistance: 9,
+  maxDistance: 12,
   idleDelay: 2000, // ms of inactivity before auto-rotation resumes
   autoRotateSpeed: 0.9,
 };

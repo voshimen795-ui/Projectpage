@@ -49,13 +49,13 @@
     <!-- ================================================================
          LOADING SCREEN
          ================================================================ -->
-    <div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-ink">
+    <div id="loader" class="backdrop fixed inset-0 z-50 flex items-center justify-center bg-ink">
       <div id="loader-inner" class="flex flex-col items-center gap-8 px-6 text-center">
         <span class="font-display text-[11px] uppercase tracking-luxe text-mist">Richard Mille</span>
         <h2 class="font-display text-6xl sm:text-7xl font-light tracking-tight text-metal">RM 11</h2>
         <div class="w-56 sm:w-64">
           <div class="h-px w-full bg-white/10 overflow-hidden">
-            <div id="loader-bar" class="h-px w-full origin-left bg-gradient-to-r from-cyan-300 via-white to-orange-300" style="transform: scaleX(0)"></div>
+            <div id="loader-bar" class="h-px w-full origin-left bg-gradient-to-r from-red-600 via-white to-red-500" style="transform: scaleX(0)"></div>
           </div>
           <p id="loader-label" class="mt-4 font-display text-xs uppercase tracking-[0.25em] text-mist">
             Loading Experience… <span id="loader-pct" class="tabular-nums text-white">0%</span>
@@ -67,6 +67,7 @@
     <!-- ================================================================
          3D CANVAS + atmosphere
          ================================================================ -->
+    <div class="backdrop pointer-events-none fixed inset-0 z-0" aria-hidden="true"></div>
     <canvas id="webgl" class="fixed inset-0 h-full w-full touch-none outline-none" aria-label="Interactive 3D model of the RM 11 watch. Drag to rotate, scroll or pinch to zoom."></canvas>
     <div class="vignette pointer-events-none fixed inset-0 z-[1]"></div>
     <div class="grain pointer-events-none fixed inset-0 z-[1]"></div>
@@ -76,7 +77,7 @@
          ================================================================ -->
     <header data-reveal class="reveal fixed inset-x-0 top-0 z-20 flex items-center justify-between px-5 py-4 sm:px-8 sm:py-6">
       <a href="#" class="font-display text-[11px] sm:text-xs font-medium uppercase tracking-luxe text-white/90 hover:text-white transition">Richard&nbsp;Mille</a>
-      <nav class="hidden md:flex items-center gap-8 text-[11px] uppercase tracking-[0.22em] text-mist">
+      <nav class="hidden xl:flex items-center gap-8 text-[11px] uppercase tracking-[0.22em] text-mist">
         <a href="#" class="nav-link">Collections</a>
         <a href="#" class="nav-link text-white">Configurator</a>
         <a href="#" class="nav-link">Manufacture</a>
@@ -93,13 +94,13 @@
     <!-- ================================================================
          HERO / PRODUCT INFO
          ================================================================ -->
-    <section class="pointer-events-none fixed left-5 top-20 z-10 sm:left-8 lg:top-28 max-w-[calc(100vw-2.5rem)] lg:max-w-sm">
+    <section id="hero" class="pointer-events-none fixed left-5 top-20 z-10 sm:left-8 xl:top-28 max-w-[calc(100vw-2.5rem)] xl:max-w-sm">
       <p data-reveal class="reveal font-display text-[10px] sm:text-[11px] uppercase tracking-luxe text-mist">Collection · Automatic Winding</p>
-      <h1 data-reveal class="reveal mt-2 font-display text-5xl sm:text-6xl lg:text-8xl font-light leading-none tracking-tight text-metal">RM&nbsp;11</h1>
-      <p data-reveal class="reveal mt-2 lg:mt-4 font-display text-sm sm:text-base lg:text-lg font-light text-white/80">Automatic Flyback Chronograph</p>
+      <h1 id="hero-title" data-reveal class="reveal mt-2 font-display text-5xl sm:text-6xl xl:text-8xl font-light leading-none tracking-tight text-metal">RM&nbsp;11</h1>
+      <p data-reveal class="reveal mt-2 xl:mt-4 font-display text-sm sm:text-base xl:text-lg font-light text-white/80">Automatic Flyback Chronograph</p>
 
       <!-- Specs: chips on mobile, grid on desktop -->
-      <ul data-reveal class="reveal spec-list mt-4 lg:mt-8 flex lg:grid lg:grid-cols-2 gap-2 lg:gap-3 overflow-x-auto no-scrollbar pointer-events-auto pr-5 lg:pr-0">
+      <ul data-reveal class="reveal spec-list mt-4 xl:mt-8 flex xl:grid xl:grid-cols-2 gap-2 xl:gap-3 overflow-x-auto no-scrollbar pointer-events-auto pr-5 xl:pr-0">
         <li class="spec-card">
           <span class="spec-k">Case</span><span class="spec-v">Titanium Case</span>
         </li>
@@ -121,24 +122,24 @@
     <aside
       id="config-panel"
       data-reveal
-      class="reveal config-panel fixed z-20 inset-x-3 bottom-[88px] lg:inset-x-auto lg:right-6 lg:top-24 lg:bottom-6 lg:w-[360px] rounded-2xl lg:rounded-3xl backdrop-blur-md bg-black/40 border border-white/10 shadow-2xl shadow-black/60 flex flex-col"
+      class="reveal config-panel fixed z-20 inset-x-3 mx-auto xl:mx-0 max-w-[520px] xl:max-w-none bottom-[88px] xl:inset-x-auto xl:right-6 xl:top-24 xl:bottom-6 xl:w-[360px] rounded-2xl xl:rounded-3xl backdrop-blur-md bg-black/40 border border-white/10 shadow-2xl shadow-black/60 flex flex-col"
       aria-label="Configure your watch"
     >
       <!-- Desktop title -->
-      <div class="hidden lg:flex items-center justify-between px-6 pt-6 pb-3">
+      <div class="hidden xl:flex items-center justify-between px-6 pt-6 pb-3">
         <span class="font-display text-[11px] uppercase tracking-luxe text-mist">Configure</span>
         <span class="font-display text-[11px] uppercase tracking-[0.2em] text-white/40">RM 11</span>
       </div>
 
       <!-- Mobile tabs: one compact control row at a time keeps the watch in view -->
-      <nav class="panel-tabs lg:hidden" role="tablist" aria-label="Configuration steps">
+      <nav class="panel-tabs xl:hidden" role="tablist" aria-label="Configuration steps">
         <button role="tab" data-tab="case" aria-selected="true">Case</button>
         <button role="tab" data-tab="strap" aria-selected="false">Strap</button>
         <button role="tab" data-tab="view" aria-selected="false">View</button>
         <button role="tab" data-tab="explode" aria-selected="false">Explode</button>
       </nav>
 
-      <div id="panel-body" class="panel-body flex-1 overflow-y-auto no-scrollbar px-4 pb-4 pt-3 lg:pt-0 lg:px-6 lg:pb-6 lg:space-y-8">
+      <div id="panel-body" class="panel-body flex-1 overflow-y-auto no-scrollbar px-4 pb-4 pt-3 xl:pt-0 xl:px-6 xl:pb-6 xl:space-y-8">
         <!-- 01 · Case finish -->
         <section data-section="case" class="is-current">
           <header class="section-head">
@@ -166,7 +167,7 @@
             <button class="swatch" data-swatch-group="strap" data-key="yellow" role="radio" aria-checked="false" aria-label="Electric Yellow" style="--swatch: #f1c40f; --glow: rgba(241, 196, 15, 0.55)"><span></span></button>
             <button class="swatch" data-swatch-group="strap" data-key="cyan" role="radio" aria-checked="false" aria-label="Cyan" style="--swatch: #00f5d4; --glow: rgba(0, 245, 212, 0.55)"><span></span></button>
           </div>
-          <p class="mt-3 hidden lg:block text-[11px] text-mist/80">Flange, crown ring &amp; seconds hand are colour-matched to the strap.</p>
+          <p class="mt-3 hidden xl:block text-[11px] text-mist/80">Flange, crown ring &amp; seconds hand are colour-matched to the strap.</p>
         </section>
 
         <!-- 03 · Perspective -->
@@ -175,7 +176,7 @@
             <span class="step">03</span>
             <h3>Perspective</h3>
           </header>
-          <div class="grid grid-cols-4 lg:grid-cols-2 gap-2">
+          <div class="grid grid-cols-4 xl:grid-cols-2 gap-2">
             <button class="view-btn" data-view="front" aria-pressed="false">
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="12" height="16" rx="5" /><circle cx="12" cy="12" r="2" /></svg>
               <span>Front</span>
@@ -206,12 +207,12 @@
             <input id="explode-slider" class="range flex-1" type="range" min="0" max="100" value="0" aria-label="Explosion amount" />
             <span id="explode-readout" class="w-10 text-right font-display text-xs tabular-nums text-mist">0%</span>
           </div>
-          <div class="mt-2 hidden lg:flex justify-between text-[10px] uppercase tracking-[0.2em] text-mist/70">
+          <div class="mt-2 hidden xl:flex justify-between text-[10px] uppercase tracking-[0.2em] text-mist/70">
             <span>Assembled</span><span>Exploded</span>
           </div>
         </section>
 
-        <p class="hidden lg:block pt-2 text-[10px] leading-relaxed text-white/30">Concept configurator for demonstration purposes. Not affiliated with Richard Mille.</p>
+        <p class="hidden xl:block pt-2 text-[10px] leading-relaxed text-white/30">Concept configurator for demonstration purposes. Not affiliated with Richard Mille.</p>
       </div>
     </aside>
 
@@ -220,14 +221,14 @@
          ================================================================ -->
     <div
       data-reveal
-      class="reveal fixed z-20 inset-x-0 bottom-0 lg:inset-x-auto lg:left-8 lg:bottom-8 flex items-center gap-4 lg:gap-6 px-4 py-3 lg:px-6 lg:py-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] lg:pb-4 lg:rounded-3xl backdrop-blur-md bg-black/40 border-t lg:border border-white/10"
+      class="reveal fixed z-20 inset-x-0 bottom-0 xl:inset-x-auto xl:left-8 xl:bottom-8 flex items-center gap-4 xl:gap-6 px-4 py-3 xl:px-6 xl:py-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] xl:pb-4 xl:rounded-3xl backdrop-blur-md bg-black/40 border-t xl:border border-white/10"
     >
-      <div class="min-w-0 flex-1 lg:flex-none">
+      <div class="min-w-0 flex-1 xl:flex-none">
         <div class="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-mist">
           <span class="live-dot" aria-hidden="true"></span>
           <span>Live <span id="live-time" class="tabular-nums text-white/80">--:--:--</span></span>
         </div>
-        <p class="font-display text-2xl lg:text-3xl font-medium tabular-nums tracking-tight">$185,000</p>
+        <p class="font-display text-2xl xl:text-3xl font-medium tabular-nums tracking-tight">$185,000</p>
       </div>
       <button id="cart-btn" class="cart-btn" data-state="idle">
         <span class="cart-label cart-label--idle">Add to Cart</span>

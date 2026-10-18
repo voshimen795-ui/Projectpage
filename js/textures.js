@@ -127,8 +127,8 @@ export function createLabelTexture(text, { width = 512, height = 96, color = '#d
 export function createFloorGlowTexture() {
   const [c, ctx] = makeCanvas(512);
   const g = ctx.createRadialGradient(256, 256, 0, 256, 256, 256);
-  g.addColorStop(0, 'rgba(120,130,150,0.55)');
-  g.addColorStop(0.35, 'rgba(60,66,80,0.25)');
+  g.addColorStop(0, 'rgba(200,40,58,0.55)');
+  g.addColorStop(0.35, 'rgba(110,18,30,0.28)');
   g.addColorStop(1, 'rgba(10,10,12,0)');
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, 512, 512);
