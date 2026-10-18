@@ -29,6 +29,18 @@ body {
 }
 
 /* Brushed-metal gradient type */
+.text-racing {
+  background: linear-gradient(180deg, #ff6b78 0%, #e63946 45%, #8f1020 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.eyebrow-line {
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, #e63946, rgba(230, 57, 70, 0));
+}
 .text-metal {
   background: linear-gradient(180deg, #ffffff 0%, #d7dae0 38%, #8c9099 62%, #e9ebef 100%);
   -webkit-background-clip: text;
@@ -96,6 +108,13 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
+.spec-card {
+  transition: border-color 0.4s var(--ease-luxe), background 0.4s var(--ease-luxe);
+}
+.spec-card:hover {
+  border-color: rgba(230, 57, 70, 0.45);
+  background: rgba(40, 6, 10, 0.45);
+}
 .spec-k {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 9px;
@@ -125,7 +144,7 @@ body {
 .section-head .step {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 10px;
-  color: var(--mist);
+  color: #ff5866;
   letter-spacing: 0.12em;
 }
 .section-value {
@@ -296,10 +315,10 @@ body {
         from var(--angle),
         rgba(255, 255, 255, 0.06),
         rgba(255, 255, 255, 0.85) 12%,
-        rgba(160, 230, 255, 0.35) 22%,
+        rgba(255, 90, 105, 0.45) 22%,
         rgba(255, 255, 255, 0.06) 35%,
         rgba(255, 255, 255, 0.06) 60%,
-        rgba(255, 200, 150, 0.6) 72%,
+        rgba(230, 57, 70, 0.7) 72%,
         rgba(255, 255, 255, 0.06) 85%
       )
       border-box;

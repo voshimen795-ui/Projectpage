@@ -157,11 +157,16 @@ export function applyCaseFinish(key, { instant = false } = {}) {
   tweenMaterials(registry.case, finish, instant ? 0 : 0.9);
 }
 
+// Rubber reflects far less light than its swatch suggests; rendering the
+// swatch colour at full albedo lets ACES wash reds into pink under the key light.
+const STRAP_ALBEDO = 0.5;
+
 /** Strap swatch — also re-tints dial accents and the crown ring. */
 export function applyStrapColor(key, { instant = false } = {}) {
   const strap = STRAP_COLORS[key];
   if (!strap) return;
   const d = instant ? 0 : 0.7;
-  tweenMaterials(registry.strap, { color: strap.color, roughness: strap.roughness }, d);
+  const albedo = new THREE.Color(strap.color).multiplyScalar(STRAP_ALBEDO);
+  tweenMaterials(registry.strap, { color: albedo, roughness: strap.roughness }, d);
   tweenMaterials(registry.accent, { color: strap.accent }, d);
 }

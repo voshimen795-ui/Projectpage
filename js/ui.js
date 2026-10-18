@@ -140,6 +140,8 @@ export function initUI({ stage, exploder, onCaseFinish, onStrapColor }) {
   return { director };
 }
 
+const summary = { case: '', strap: '' };
+
 /** Circular swatch rings — click / keyboard selectable radio group. */
 function initSwatches(group, options, initial, onChange) {
   const buttons = $$(`[data-swatch-group="${group}"]`);
@@ -156,6 +158,9 @@ function initSwatches(group, options, initial, onChange) {
       gsap.fromTo(label, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
       label.textContent = options[key].label;
     }
+    summary[group] = options[key].label;
+    const el = $('#config-summary');
+    if (el) el.textContent = `${summary.case} · ${summary.strap}`;
     if (fire) onChange(key);
   };
 

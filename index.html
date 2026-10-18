@@ -87,7 +87,7 @@
         <svg id="cart-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M6 7h12l-1 13H7L6 7Z" /><path d="M9 7a3 3 0 0 1 6 0" />
         </svg>
-        <span id="cart-count" class="absolute -right-1 -top-1 grid h-5 min-w-[1.25rem] place-items-center rounded-full bg-white px-1 text-[10px] font-semibold text-black opacity-0 scale-50 transition">0</span>
+        <span id="cart-count" class="absolute -right-1 -top-1 grid h-5 min-w-[1.25rem] place-items-center rounded-full bg-red-600 px-1 text-[10px] font-semibold text-white opacity-0 scale-50 transition">0</span>
       </button>
     </header>
 
@@ -95,8 +95,8 @@
          HERO / PRODUCT INFO
          ================================================================ -->
     <section id="hero" class="pointer-events-none fixed left-5 top-20 z-10 sm:left-8 xl:top-28 max-w-[calc(100vw-2.5rem)] xl:max-w-sm">
-      <p data-reveal class="reveal font-display text-[10px] sm:text-[11px] uppercase tracking-luxe text-mist">Collection · Automatic Winding</p>
-      <h1 id="hero-title" data-reveal class="reveal mt-2 font-display text-5xl sm:text-6xl xl:text-8xl font-light leading-none tracking-tight text-metal">RM&nbsp;11</h1>
+      <p data-reveal class="reveal flex items-center gap-3 font-display text-[10px] sm:text-[11px] uppercase tracking-luxe text-mist"><span class="eyebrow-line" aria-hidden="true"></span>Collection · Automatic Winding</p>
+      <h1 id="hero-title" data-reveal class="reveal mt-2 font-display text-5xl sm:text-6xl xl:text-8xl font-light leading-none tracking-tight"><span class="text-metal">RM</span>&nbsp;<span class="text-racing">11</span></h1>
       <p data-reveal class="reveal mt-2 xl:mt-4 font-display text-sm sm:text-base xl:text-lg font-light text-white/80">Automatic Flyback Chronograph</p>
 
       <!-- Specs: chips on mobile, grid on desktop -->
@@ -229,6 +229,7 @@
           <span>Live <span id="live-time" class="tabular-nums text-white/80">--:--:--</span></span>
         </div>
         <p class="font-display text-2xl xl:text-3xl font-medium tabular-nums tracking-tight">$185,000</p>
+        <p id="config-summary" class="hidden sm:block mt-0.5 text-[11px] text-mist truncate">Carbon / Titanium Black · Racing Red</p>
       </div>
       <button id="cart-btn" class="cart-btn" data-state="idle">
         <span class="cart-label cart-label--idle">Add to Cart</span>
