@@ -77,12 +77,10 @@ export function createStage(canvas) {
     // Keep the current shot consistent when crossing breakpoints / rotating devices.
     camera.position.sub(controls.target).multiplyScalar(stage.frameScale / prevScale).add(controls.target);
 
-    // Side drawer (desktop ≥ 1280px, or a phone in landscape) → watch nudged
-    // left. Portrait / tablet: hero on top and tabbed sheet below are balanced,
-    // so no shift is needed.
-    let offsetX = 0;
-    if (w >= 1280) offsetX = Math.min(220, w * 0.12);
-    else if (w > h && h <= 520) offsetX = 160;
+    // Desktop: the info column (left) and drawer (right) are about equally
+    // wide, so the free space is already centred. Phones in landscape have only
+    // the drawer, so the watch is nudged left. Portrait needs no shift.
+    const offsetX = w < 1280 && w > h && h <= 520 ? 160 : 0;
     camera.setViewOffset(w, h, offsetX, 0, w, h);
     camera.updateProjectionMatrix();
   };

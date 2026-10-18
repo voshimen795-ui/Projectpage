@@ -25,17 +25,17 @@ export const SCENE = {
   exposure: 1.2,
   fov: 36,
   // Width (scene units) that must stay visible; narrow screens pull the camera back.
-  frameWidth: 2.2,
+  frameWidth: 1.65,
   // Overall watch height (strap tip to strap tip) in scene units. Both the GLB
   // and the procedural model are fitted to this, so camera presets frame them alike.
-  modelHeight: 3.2,
+  modelHeight: 2.4,
   // Floor sits just below the lowest point of the strap.
-  floorY: -1.75,
+  floorY: -1.35,
 };
 
 export const CONTROLS = {
   dampingFactor: 0.05,
-  minDistance: 1.8,
+  minDistance: 1.5,
   maxDistance: 12,
   idleDelay: 2000, // ms of inactivity before auto-rotation resumes
   autoRotateSpeed: 0.9,
